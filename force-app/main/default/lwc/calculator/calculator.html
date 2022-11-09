@@ -1,0 +1,97 @@
+<template>
+  <lightning-card title="Tip Calculator">
+    <p>Bill Amount</p>
+    <lightning-input type="number" onchange={billAmountHandler}>
+    </lightning-input>
+    <p>How was the service?</p>
+
+    <lightning-combobox
+      name="progress"
+      label="Service"
+      value={value}
+      placeholder="Select Rating"
+      options={pickList}
+      onchange={handleChange}
+    ></lightning-combobox>
+
+    <p>Total number of persons</p>
+    <lightning-input type="number" onchange={peopleHandler}> </lightning-input>
+
+    <lightning-button
+      variant="success"
+      label="Calculate"
+      title="Calculate"
+      onclick={handleCalculate}
+      class="slds-var-m-left_x-small"
+    ></lightning-button>
+    <lightning-button
+      variant="brand"
+      label="Show Receipt"
+      title="Receipt"
+      onclick={handleReceipt}
+      class="slds-var-m-left_x-small"
+    ></lightning-button>
+    <lightning-button
+      variant="success"
+      label="View History"
+      title="History"
+      onclick={handleHistory}
+      class="slds-var-m-left_x-small"
+    ></lightning-button>
+    <lightning-button
+      variant="error"
+      label="Clear All"
+      title="Clear"
+      onclick={handleClear}
+      class="slds-var-m-left_x-small"
+    ></lightning-button>
+
+    <!--Model-->
+    <section
+      role="dialog"
+      tabindex="-1"
+      aria-modal="true"
+      aria-labelledby="modal-heading-01"
+      class="slds-modal slds-fade-in-open slds-hide"
+      
+    >
+      <div class="slds-modal__container">
+        <button
+          class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+        >
+          <svg
+            class="slds-button__icon slds-button__icon_large"
+            aria-hidden="true"
+          >
+            <use
+              xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"
+            ></use>
+          </svg>
+          <span class="slds-assistive-text">Cancel and close</span>
+        </button>
+        <div class="slds-modal__header">
+          <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+            Modal header
+          </h1>
+        </div>
+        <div
+          class="slds-modal__content slds-p-around_medium"
+          id="modal-content-id-1"
+        >
+          <p>hello</p>
+        </div>
+        <div class="slds-modal__footer">
+          <button
+            class="slds-button slds-button_neutral"
+            aria-label="Cancel and close"
+          >
+            close
+          </button>
+        </div>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open slds-hide" role="presentation"></div>
+
+    <div class="slds-box">Tip Amount: $</div>
+  </lightning-card>
+</template>
