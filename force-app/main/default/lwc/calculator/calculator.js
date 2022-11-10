@@ -5,6 +5,11 @@ export default class Calculator extends LightningElement {
   service = '';
   numberOfPeople = 1;
   tip = 0;
+  tips = [];
+  tipData = {};
+  idNum = 1;
+  historyVisible = false;
+  receiptVisible = false;
 
   billAmountHandler(event) {
     this.totalBill = event.target.value;
@@ -40,11 +45,19 @@ handleCalculate() {
   else if (service === 'bad') {
     total = (totalbill *  .05) / num;
   }
-
+  
   this.tip = total;
+
+  this.tipData = {id: this.idNum,
+                  amount: this.totalBill,
+                  people: this.numberOfPeople,
+                  service: this.service,
+                  total: this.tip};
+  this.tips.push(this.tipData);
+  this.idNum = this.idNum + 1;
 }
 
-handleClear(event){
+handleClear(){
   this.template.querySelectorAll('lightning-input[data-id="reset"]').forEach(element => {
     element.value = null;
   });
@@ -52,4 +65,11 @@ handleClear(event){
   this.tip = 0;
 }
 
+handleReceipt() {
+  this.receiptVisible = !this.receiptVisible;
+}
+
+handleHistory() {
+  this.historyVisible = !this.historyVisible;
+}
 }
