@@ -1,7 +1,7 @@
 <template>
   <lightning-card title="Tip Calculator">
     <p>Bill Amount</p>
-    <lightning-input type="number" onchange={billAmountHandler}>
+    <lightning-input type="number" onchange={billAmountHandler} data-id="reset">
     </lightning-input>
     <p>How was the service?</p>
 
@@ -9,13 +9,14 @@
       name="progress"
       label="Service"
       value={value}
+      data-id="reset"
       placeholder="Select Rating"
       options={pickList}
       onchange={handleChange}
     ></lightning-combobox>
 
     <p>Total number of persons</p>
-    <lightning-input type="number" onchange={peopleHandler}> </lightning-input>
+    <lightning-input type="number" onchange={peopleHandler} data-id="reset"> </lightning-input>
 
     <lightning-button
       variant="success"

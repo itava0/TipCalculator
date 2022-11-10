@@ -44,4 +44,12 @@ handleCalculate() {
   this.tip = total;
 }
 
+handleClear(event){
+  this.template.querySelectorAll('lightning-input[data-id="reset"]').forEach(element => {
+    element.value = null;
+  });
+  this.template.querySelector('lightning-combobox[data-id="reset"]').value = null;
+  this.tip = 0;
+}
+
 }
