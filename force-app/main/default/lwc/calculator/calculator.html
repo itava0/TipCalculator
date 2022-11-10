@@ -1,5 +1,6 @@
 <template>
-  <lightning-card title="Tip Calculator">
+  <lightning-card>
+    <h1 class="title-name">Tip Calculator</h1>
     <p>Bill Amount</p>
     <lightning-input type="number" onchange={billAmountHandler} data-id="reset">
     </lightning-input>
@@ -7,7 +8,6 @@
 
     <lightning-combobox
       name="progress"
-      label="Service"
       value={value}
       data-id="reset"
       placeholder="Select Rating"
