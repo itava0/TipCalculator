@@ -1,22 +1,45 @@
 <template>
-  <lightning-card>
-    <h1 class="title-name">Tip Calculator</h1>
-    <p>Bill Amount</p>
-    <lightning-input type="number" onchange={billAmountHandler} data-id="reset">
-    </lightning-input>
-    <p>How was the service?</p>
+  <lightning-card class="slds-grid slds-grid_align-center">
+<div class="wrapper">
+  <h1 class="title-name">Tip Calculator</h1>
+  <div class="slds-grid slds-grid_vertical-align-center slds-gutters">
+    <div class="slds-col slds-size_1-of-3">
+      <p class="p-center">Bill Amount</p>
+    </div>
+    <div class="slds-col slds-size_2-of-3">
+      <lightning-input type="number" onchange={billAmountHandler} data-id="reset" placeholder="Enter total bill">
+      </lightning-input>
+    </div>
+  </div>
 
-    <lightning-combobox
-      name="progress"
-      value={value}
-      data-id="reset"
-      placeholder="Select Rating"
-      options={pickList}
-      onchange={handleChange}
-    ></lightning-combobox>
+  <div class="slds-grid slds-grid_vertical-align-center slds-gutters">
+    <div class="slds-col slds-size_1-of-3">
+      <p class="p-center">How was the service?</p>
+    </div>
+    <div class="slds-col slds-size_2-of-3">
+      <lightning-combobox
+        name="progress"
+        value={value}
+        data-id="reset"
+        placeholder="Select Rating"
+        options={pickList}
+        onchange={handleChange}
+      ></lightning-combobox>
+    </div>
+  </div>
 
-    <p>Total number of persons</p>
-    <lightning-input type="number" onchange={peopleHandler} data-id="reset"> </lightning-input>
+  <div class="slds-grid slds-grid_vertical-align-center slds-gutters">
+    <div class="slds-col slds-size_1-of-3">
+      <p class="p-center">Total number of persons</p>
+    </div>
+    <div class="slds-col slds-size_2-of-3">
+
+      <lightning-input type="number" onchange={peopleHandler} data-id="reset" placeholder="Enter number of people sharing the bill"> </lightning-input>
+    </div>
+  </div>
+
+
+  <div class="button-wrapper">
 
     <lightning-button
       variant="success"
@@ -46,42 +69,45 @@
       onclick={handleClear}
       class="slds-var-m-left_x-small"
     ></lightning-button>
+  </div>
 
-    <template if:true={historyVisible}>
-      <div class="slds-box"><p>History details:</p>
-        <ul class="slds-list_horizontal">
-          <template for:each={tips} for:item="t">
-            <li key ={t.id}>Total Amount: {t.amount}, People: {t.people}, Service: {t.service}, Tip: {t.total} </li>
-          </template>
-        </ul>
+
+  <template if:true={historyVisible}>
+    <div class="slds-box"><p>History details:</p>
+      <ul class="slds-list_horizontal">
+        <template for:each={tips} for:item="t">
+          <li key ={t.id}>Total Amount: {t.amount}, People: {t.people}, Service: {t.service}, Tip: {t.total} </li>
+        </template>
+      </ul>
+    </div>
+  </template>
+
+
+  <template if:true={receiptVisible}>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-label="Meaningful description of the modal content" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container">
+      <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+      <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+      <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+      </svg>
+      <span class="slds-assistive-text">Cancel and close</span>
+      </button>
+      <div class="slds-modal__content slds-p-around_medium slds-modal__content_headless" id="modal-content-id-1">
+        <p>Number of People: {numberOfPeople}</p>
+        <p>Service Type: {service}</p>
+        <p>Total Amount: {totalBill}</p>
+        <p>Tip per Person: {tip}$</p>
       </div>
-    </template>
-
-
-    <template if:true={receiptVisible}>
-      <section role="dialog" tabindex="-1" aria-modal="true" aria-label="Meaningful description of the modal content" class="slds-modal slds-fade-in-open">
-        <div class="slds-modal__container">
-        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
-        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
-        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
-        </svg>
-        <span class="slds-assistive-text">Cancel and close</span>
-        </button>
-        <div class="slds-modal__content slds-p-around_medium slds-modal__content_headless" id="modal-content-id-1">
-          <p>Number of People: {numberOfPeople}</p>
-          <p>Service Type: {service}</p>
-          <p>Total Amount: {totalBill}</p>
-          <p>Tip per Person: {tip}$</p>
-        </div>
-        <div class="slds-modal__footer">
-        <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={handleReceipt}>Cancel</button>
-        </div>
-        </div>
-        </section>
-        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
-    </template>
-    
-    
-    <div class="slds-box">Tip Amount: ${tip}</div>
+      <div class="slds-modal__footer">
+      <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={handleReceipt}>Cancel</button>
+      </div>
+      </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+  </template>
+  
+  
+  <div class="slds-box">Tip Amount: ${tip}</div>
+</div>
   </lightning-card>
 </template>
