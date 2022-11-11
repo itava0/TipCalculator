@@ -31,6 +31,10 @@ handleChange(event) {
   this.service = event.detail.value;
 }
 
+
+//handleCalculate's method checks the status of the service
+//based on the service calculate the tip %
+
 handleCalculate() {
   let total = 0;
   let totalbill = this.totalBill;
@@ -57,6 +61,8 @@ handleCalculate() {
   this.idNum = this.idNum + 1;
 }
 
+
+//handleClear's method resets all the value of the inputs and picklist
 handleClear(){
   this.template.querySelectorAll('lightning-input[data-id="reset"]').forEach(element => {
     element.value = null;
@@ -64,6 +70,7 @@ handleClear(){
   this.template.querySelector('lightning-combobox[data-id="reset"]').value = null;
   this.tip = 0;
 }
+
 
 handleReceipt() {
   this.receiptVisible = !this.receiptVisible;
